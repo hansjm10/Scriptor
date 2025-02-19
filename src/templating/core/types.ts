@@ -11,7 +11,8 @@ import {SafeString} from "./safeString";
 export type TemplateNode =
     | LiteralNode
     | PlaceholderNode
-    | ConditionalNode;
+    | ConditionalNode
+    | ForLoopNode;
 
 export interface LiteralNode {
     type: 'literal';
@@ -29,6 +30,13 @@ export interface ConditionalNode {
     trueBranch: TemplateNode[];
     falseBranch?: TemplateNode[];
 }
+export interface ForLoopNode {
+    type: 'for';
+    iterator: string;
+    collection: string;
+    body: TemplateNode[];
+}
+
 /**
  * Fundamental template processing units
  */
