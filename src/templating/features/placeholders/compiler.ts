@@ -41,6 +41,16 @@ export class Compiler implements TemplateCompiler<TemplateNode> {
                         fe: n.falseBranch ? this.compile(n.falseBranch) : null
                     };
                 }
+                case 'for': {
+                    const n = node as any; // node as ForLoopNode
+                    return {
+                        t: 'F',
+                        iterator: n.iterator,
+                        collection: n.collection,
+                        fn: this.compile(n.body)
+                    };
+                }
+
                 default:
                     throw new Error(`Unknown node type: ${(node as any).type}`);
             }
@@ -80,6 +90,18 @@ export class Compiler implements TemplateCompiler<TemplateNode> {
                 }
 
                 if (token.t === 'C') {
+            if (token.t === 'F') {
+                const collection = data[token.collection];
+                if (Array.isArray(collection)) {
+                    for (const item of collection) {
+                        const loopData = { ...data };
+                        loopData[token.iterator] = item;
+                        output += token.fn(loopData, helpers).toString();
+                    }
+                }
+                continue;
+            }
+
                     // Evaluate condition using the designated key's value.
                     const condition = Boolean(data[token.cond]);
                     if (condition) {
