@@ -8,7 +8,7 @@ import {
     TemplateCompiler,
     TemplateHelpers
 } from "../../core/types";
-import { SafeString } from "../../core/safeString";
+import { SafeString } from "../../core/safe-string";
 
 type LiteralToken = { t: 'L'; v: string };
 type PlaceholderToken = { t: 'P'; k: string; d?: string };

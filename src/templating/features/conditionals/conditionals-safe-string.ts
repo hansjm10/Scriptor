@@ -1,4 +1,4 @@
-import {SafeString} from "../../core/safeString";
+import {SafeString} from "../../core/safe-string";
 
 export class ConditionalSafeString extends SafeString {
     constructor(

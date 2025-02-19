@@ -4,7 +4,7 @@
 // src/templating/core/engine.ts
 
 import {RenderFunction, TemplateCompiler, TemplateHelpers, TemplateNode, TemplateParser} from "./types";
-import {SafeString} from "./safeString";
+import {SafeString} from "./safe-string";
 import {PlaceholderParser} from "../features/placeholders/parser";
 import {Compiler} from "../features/placeholders/compiler";
 

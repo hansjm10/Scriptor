@@ -3,7 +3,7 @@
 // -------------------------------
 // src/templating/core/types.ts
 
-import { SafeString } from "./safeString";
+import { SafeString } from "./safe-string";
 
 /**
  * Base type for all template nodes
