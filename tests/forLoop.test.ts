@@ -1,4 +1,4 @@
-import { createDefaultEngine } from "../src/templating";
+import { createDefaultEngine } from "../src/templating/core/engine";
 
 describe("For Loop Rendering", () => {
     test("renders a loop over numbers", () => {
