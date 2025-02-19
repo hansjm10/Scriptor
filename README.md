@@ -1,74 +1,73 @@
-# Scriptor - Blazor-Inspired Templating Engine
+# Scriptor - A TypeScript Engine Emulating Blazor's Component Architecture
 
-Scriptor is a project dedicated to building a templating engine for C# that brings a component-based, reactive development style similar to Blazor. The goal is to make it easier to build modern, modular UI components with a natural developer experience.
+Scriptor is a cutting-edge templating engine built in TypeScript, designed to bring the intuitive component model and reactivity of Blazor to modern web development. By harnessing TypeScript's strengths, Scriptor transforms UI creation into a streamlined, maintainable, and dynamic experience.
 
 ## Overview
 
-Scriptor aims to provide:
-
-- A simple, declarative syntax for defining UI components and templates.
-- Built-in support for data-binding and reactive updates.
-- A component lifecycle management similar to Blazor's model.
-- Flexibility to extend and integrate with existing C# applications.
+Emulating Blazor's familiar component-based paradigm, Scriptor provides:
+- A declarative, intuitive syntax for assembling web interfaces.
+- Reactive data-binding for automatic UI updates.
+- A comprehensive component lifecycle, from initialization to disposal.
+- Seamless integration with contemporary development tools and practices.
 
 ## Current Status
 
-- **Initial Setup:** Basic project scaffolding is in place.
-- **Template Parsing:** Early-stage implementation of the template parser has been developed. It handles basic tags and expressions.
-- **Component Model:** A preliminary component model exists, laying the groundwork for more advanced features.
-- **Testing:** Initial tests have been written to validate parts of the parsing logic.
+- **Foundation:** Basic project structure established with a focus on simplicity.
+- **Parsing Mechanism:** A preliminary template parser has been implemented, supporting basic tags and interpolation designed for TypeScript.
+- **Component Framework:** An initial component system is operational, laying the groundwork for advanced features.
+- **Testing:** Early tests validate the parser and rendering logic to ensure quality and reliability.
 
-While the current implementation is rudimentary, it provides a foundation for expanding into a full-featured, Blazor-like templating engine.
+Though in its early stages, Scriptor provides a robust platform that mirrors Blazor's capabilities in a TypeScript environment.
 
 ## TODOs
 
-- [ ] **Enhanced Template Parser:**
-  - Implement support for dynamic expressions, conditionals, and loops.
-  - Improve error handling and provide better diagnostics for syntax errors.
+- [ ] **Enhance Template Parsing:**
+  - Add support for dynamic expressions, conditional logic, and iteration constructs.
+  - Improve error handling with detailed diagnostics.
 
-- [ ] **Component Lifecycle and State Management:**
-  - Develop a robust system for component initialization, rendering, and disposal.
-  - Integrate reactive data-binding to automatically update the UI on state changes.
+- [ ] **Refine Component Lifecycle:**
+  - Expand lifecycle management to cover initialization, rendering, and cleanup phases.
+  - Integrate advanced reactive data-binding for seamless state management.
 
-- [ ] **Testing and Documentation:**
-  - Expand unit and integration tests to cover new functionalities.
-  - Improve documentation and add usage examples for better clarity.
+- [ ] **Augment Testing and Documentation:**
+  - Increase unit and integration test coverage.
+  - Develop comprehensive documentation with rich examples and API references.
 
-- [ ] **Performance Optimizations:**
-  - Optimize the rendering engine for large-scale templates and complex component trees.
+- [ ] **Optimize Engine Performance:**
+  - Upgrade the rendering pipeline to efficiently manage complex component trees and large-scale applications.
 
 ## Roadmap
 
-### Phase 1: Minimum Viable Product (MVP)
+### Phase 1: MVP
 
-- Complete the core template parser.
-- Refine the basic component model.
-- Establish a stable development framework with continuous integration.
+- Finalize core template parsing functionality.
+- Enhance foundational component definitions and lifecycle management.
+- Integrate continuous testing and CI tools.
 
 ### Phase 2: Feature Expansion
 
-- Introduce advanced templating features (dynamic expressions, conditionals, loops).
-- Enhance data-binding and reactive update mechanisms.
-- Expand the test suite and refine documentation.
+- Implement advanced templating constructs (conditionals, loops, dynamic expressions).
+- Enhance reactive data-binding and state synchronization.
+- Broaden documentation and testing coverage.
 
-### Phase 3: Integration and Refinement
+### Phase 3: Production Readiness
 
-- Integrate additional C# components to offer features similar to Blazor.
-- Improve performance and scalability for production use.
-- Prepare for version 1.0 release with comprehensive documentation and community examples.
+- Incorporate further TypeScript enhancements to fully emulate Blazor's feature set.
+- Optimize performance and scalability.
+- Prepare for a stable v1.0 release with detailed documentation and use cases.
 
-### Future Directions
+## Future Directions
 
-- Explore plugin and extension systems for greater customization.
-- Foster community contributions and gather feedback for continuous improvement.
-- Enhance integration options with other C# UI frameworks.
+- Explore a customizable plugin architecture.
+- Foster open-source contributions and community-driven improvements.
+- Expand compatibility with other modern frontend frameworks.
 
 ## Contributing
 
-Contributions are welcome! Please adhere to our coding standards and guidelines. For major changes, open an issue first to discuss what you would like to change.
+Contributions are highly encouraged. Please adhere to our guidelines and open an issue before proposing significant changes.
 
 ## License
 
 MIT License
 
-*This README will be regularly updated as the project evolves.*
+*This README will be updated as Scriptor evolves and matures.*
