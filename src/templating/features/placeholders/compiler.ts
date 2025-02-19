@@ -48,13 +48,19 @@ export class Compiler implements TemplateCompiler<TemplateNode> {
 
         // Only collect valid keys from placeholder nodes (ignoring conditional keys).
         const validKeys = this.collectPlaceholderKeys(nodes);
+console.log('Valid keys set:', validKeys);
 
-        return (data: Record<string, any>, helpers: TemplateHelpers) => {
+return (data: Record<string, any>, helpers: TemplateHelpers) => {
+    console.log('Data being validated:', data);
             let output = '';
 
             // Validate that every key in the provided data is expected (only placeholders count)
+console.log('Valid keys before validation:', validKeys);
+            console.log('Valid keys:', validKeys);
+            console.log('Data keys:', Object.keys(data));
             for (const key of Object.keys(data)) {
                 if (!validKeys.has(key)) {
+console.log('Valid keys during validation:', validKeys);
                     throw new Error(`Unexpected key '${key}' in data`);
                 }
             }
@@ -95,7 +101,9 @@ export class Compiler implements TemplateCompiler<TemplateNode> {
     }
 
     // In src/templating/features/placeholders/compiler.ts
-    private collectPlaceholderKeys(nodes: TemplateNode[], keys: Set<string> = new Set()): Set<string> {
+    private collectPlaceholderKeys(nodes: TemplateNode[]): Set<string> {
+    const keys = new Set<string>();
+        console.log('Entering collectPlaceholderKeys with nodes:', nodes);
         for (const node of nodes) {
             switch (node.type) {
                 case 'placeholder':
@@ -106,9 +114,13 @@ export class Compiler implements TemplateCompiler<TemplateNode> {
                     // Add the condition key (e.g., "show")
                     keys.add(condNode.condition);
                     // Recursively process branches WITH THE SAME KEY SET
-                    this.collectPlaceholderKeys(condNode.trueBranch, keys);
+                    const trueBranchKeys = this.collectPlaceholderKeys(condNode.trueBranch);
+trueBranchKeys.forEach(key => keys.add(key));
+console.log('Keys after collecting trueBranch:', keys);
                     if (condNode.falseBranch) {
-                        this.collectPlaceholderKeys(condNode.falseBranch, keys);
+console.log('Recursively processing trueBranch:', condNode.trueBranch);
+                        const falseBranchKeys = this.collectPlaceholderKeys(condNode.falseBranch);
+falseBranchKeys.forEach(key => keys.add(key));
                     }
                     break;
                 }
@@ -117,6 +129,7 @@ export class Compiler implements TemplateCompiler<TemplateNode> {
                     break;
             }
         }
+        console.log('Collected keys:', keys);
         return keys;
     }
 

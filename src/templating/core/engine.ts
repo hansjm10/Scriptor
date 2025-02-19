@@ -25,6 +25,7 @@ export class TemplateEngine {
 
     compile(template: string): RenderFunction {
         const nodes = this.parser.parse(template);
+console.log('Nodes:', nodes);
         return this.compiler.compile(nodes);
     }
 
