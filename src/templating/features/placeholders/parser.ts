@@ -9,9 +9,23 @@ export class PlaceholderParser implements TemplateParser<TemplateNode> {
   // Extended regex to handle @if, @else, @endif, @for, @endfor, and placeholders
   private readonly tagRegex = /@(if){([^{}]*)}|@(else)|@(endif)|@(for){([^{}]*)}|@(endfor)|@\{([^{}]*)\}/g;
 
+  // Maximum permitted nesting depth (for extreme cases)
+  private maxNestingDepth: number;
+
   // Track current parsing position for better error messages
   private line = 1;
   private col = 1;
+
+  constructor(options?: { maxNestingDepth?: number }) {
+    this.maxNestingDepth = options?.maxNestingDepth ?? 50;
+  }
+
+  private pushStack(stack: ParserStackEntry[], entry: ParserStackEntry) {
+    if (stack.length >= this.maxNestingDepth) {
+      this.throwError(`Maximum nesting depth of ${this.maxNestingDepth} exceeded.`);
+    }
+    stack.push(entry);
+  }
 
   parse(template: string): TemplateNode[] {
     const nodes: TemplateNode[] = [];
@@ -48,7 +62,7 @@ export class PlaceholderParser implements TemplateParser<TemplateNode> {
           trueBranch: [],
         };
         currentNodes.push(conditionalNode);
-        stack.push({
+        this.pushStack(stack, {
           parentNodes: currentNodes,
           node: conditionalNode,
         });
@@ -67,7 +81,7 @@ export class PlaceholderParser implements TemplateParser<TemplateNode> {
           this.throwError("Multiple @else for @if");
         }
         conditionalNode.falseBranch = [];
-        stack.push({
+        this.pushStack(stack, {
           parentNodes: top.parentNodes,
           node: conditionalNode,
         });
@@ -91,7 +105,7 @@ export class PlaceholderParser implements TemplateParser<TemplateNode> {
           children: [],
         };
         currentNodes.push(iterationNode);
-        stack.push({
+        this.pushStack(stack, {
           parentNodes: currentNodes,
           node: iterationNode,
         });
