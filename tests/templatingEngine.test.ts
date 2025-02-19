@@ -188,12 +188,15 @@ describe("Conditional Template Tests", () => {
         const template = "@if{show}Hello @{name}!@endif";
         const render = engine.createTemplate(template);
         const result = render({ show: true, name: "Alice" });
+        console.log('Test data:', { show: true, name: "Alice" });
+
         expect(result.toString()).toBe("Hello Alice!"); // ✅ Passes
     });
 
     it("should render the false branch when the condition is false", () => {
         const template = "@if{show}Hello @{name}!@elseGoodbye!@endif";
         const render = engine.createTemplate(template);
+        console.log('Test data:', { show: false });
         const result = render({ show: false });
         expect(result.toString()).toBe("Goodbye!");
     });
@@ -207,6 +210,7 @@ describe("Conditional Template Tests", () => {
 
     it("should handle nested conditionals", () => {
         const template = "@if{show}Hello @if{name}@{name}!@elseWorld!@endif@elseGoodbye!@endif";
+        console.log('Test data:', { show: true, name: "Alice" });
         const render = engine.createTemplate(template);
         const result1 = render({ show: true, name: "Alice" });
         const result2 = render({ show: true, name: "" });
@@ -290,7 +294,7 @@ describe("Conditional Template Tests", () => {
     });
 
     it("should handle conditionals with truthy values", () => {
-        const template = "@if{show}Hello @{name}!@elseGoodbye!@endif";
+        const template = "@if{show}Hello @{name=}!@elseGoodbye!@endif";
         const render = engine.createTemplate(template);
         const result1 = render({ show: 1 }); // truthy
         const result2 = render({ show: "true" }); // truthy
@@ -303,3 +307,4 @@ describe("Conditional Template Tests", () => {
         expect(result4.toString()).toBe("Hello !");
     });
 });
+

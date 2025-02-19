@@ -4,6 +4,7 @@ export class PlaceholderParser implements TemplateParser<TemplateNode> {
     private readonly tagRegex = /@(if){([^{}]*)}|@(else)|@(endif)|@\{([^{}]*)\}/g;
 
     parse(template: string): TemplateNode[] {
+console.log('Parsing template:', template);
         const nodes: TemplateNode[] = [];
         let currentNodes: TemplateNode[] = nodes;
         const stack: Array<{
